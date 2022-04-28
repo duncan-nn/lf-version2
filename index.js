@@ -33,11 +33,7 @@ app.use("/api/orders", orderRoute);
 app.use("/api/checkout", checkoutRoute);
 app.use("/api/currency", currencyRoute);
 
-app.listen(80, () => {
+
+app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");
 });
-
-
-// app.listen(process.env.PORT || 5000, () => {
-//   console.log("Backend server is running!");
-// });
