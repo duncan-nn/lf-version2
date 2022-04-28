@@ -15,7 +15,7 @@ const cors = require("cors");
 
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect("mongodb+srv://lf_admin1:M0RefzwZobE8ZTvM@cluster0.8bb6h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
   .then(() => console.log("DB Connection Successfull!"))
   .catch((err) => {
     console.log(err);
@@ -33,7 +33,10 @@ app.use("/api/orders", orderRoute);
 app.use("/api/checkout", checkoutRoute);
 app.use("/api/currency", currencyRoute);
 
-app.listen();
+app.listen(80, () => {
+  console.log("Backend server is running!");
+});
+
 
 // app.listen(process.env.PORT || 5000, () => {
 //   console.log("Backend server is running!");
