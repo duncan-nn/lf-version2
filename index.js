@@ -8,6 +8,7 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
+const customerRoute = require("./routes/customer");
 const checkoutRoute = require("./routes/checkout");
 const currencyRoute = require("./routes/currency");
 // const stripeRoute = require("./routes/stripe");
@@ -34,6 +35,7 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/customers", customerRoute);
 // app.use("/api/checkout", stripeRoute);
 
 app.use("/api/checkout", checkoutRoute);
