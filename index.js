@@ -11,22 +11,22 @@ const orderRoute = require("./routes/order");
 const customerRoute = require("./routes/customer");
 const checkoutRoute = require("./routes/checkout");
 const currencyRoute = require("./routes/currency");
-// const stripeRoute = require("./routes/stripe");
+const sendPulseRoute = require("./routes/sendpulse");
 const cors = require("cors");
 
 
-mongoose
-  .connect("mongodb+srv://lf_admin1:M0RefzwZobE8ZTvM@cluster0.8bb6h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-  .then(() => console.log("DB Connection Successfull!"))
-  .catch((err) => {
-    console.log(err);
-  });
 // mongoose
-//   .connect(process.env.MONGO_URL)
+//   .connect("mongodb+srv://lf_admin1:M0RefzwZobE8ZTvM@cluster0.8bb6h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 //   .then(() => console.log("DB Connection Successfull!"))
 //   .catch((err) => {
 //     console.log(err);
 //   });
+mongoose
+  .connect(process.env.LF_MONGO_URL)
+  .then(() => console.log("DB Connection Successfull!"))
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(cors());
 app.use(express.json());
@@ -36,10 +36,9 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/customers", customerRoute);
-// app.use("/api/checkout", stripeRoute);
-
 app.use("/api/checkout", checkoutRoute);
 app.use("/api/currency", currencyRoute);
+app.use("/api/sendpulse", sendPulseRoute);
 
 
 app.listen(process.env.PORT || 5000, () => {
