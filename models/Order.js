@@ -37,11 +37,15 @@ const OrderSchema = new mongoose.Schema(
     shipping: { type: Number, required: true },
     discount: { type: Number, required: true },
     tax: { type: Number, required: true },
+    amountCharged: { type: Number, required: true },
     currencyPaid: { type: String, default: "USD" },
     exchangeRate: { type: Number, required: true },
     vendor: { type: String, required: true },
     paymentType: { type: String, required: true },
     status: { type: String, default: "pending" },
+    responseMessage: { type: String, required: true },
+    customer_comment: { type: String, required: false },
+    gift_receipt: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
