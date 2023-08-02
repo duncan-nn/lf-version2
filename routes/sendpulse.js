@@ -30,7 +30,7 @@ const TOKEN_STORAGE="/tmp/";
     }
   });
 
-    // Send Email //
+    // Send Email ///
 
     router.post("/send_email", async (req, res) => {
 
@@ -375,7 +375,7 @@ const TOKEN_STORAGE="/tmp/";
       var currentdate = new Date(); 
 
       var productsHTML = ``;
-      req.body.order.products.map((product) => (
+      req.body.products.map((product) => (
         productsHTML += `<div style="background:#fcfcfc;background-color:#fcfcfc;margin:0px auto;max-width:550px;">
           <table role="presentation" style="background:#fcfcfc;background-color:#fcfcfc;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
             <tbody>
@@ -403,7 +403,7 @@ const TOKEN_STORAGE="/tmp/";
                         <tbody><tr>
                           <td style="font-size:0px;padding:10px 25px;word-break:break-word;" align="right">
                             <div style="font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:right;color:#434245;">
-                              <p style="margin: 0;">${req.body.order.currencyPaid} ${product.price}</p>
+                              <p style="margin: 0;">${req.body.currencyPaid} ${product.price}</p>
                             </div>
                           </td>
                         </tr>
@@ -552,7 +552,7 @@ const TOKEN_STORAGE="/tmp/";
                             <tbody><tr>
                               <td style="font-size:0px;padding:10px 25px;word-break:break-word;" align="center">
                                 <div style="font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:24px;font-weight:700;line-height:32px;text-align:center;color:#434245;">
-                                  <h1 style="margin: 0; font-size: 24px; line-height: normal; font-weight: bold;">${req.body.order.gift_receipt == true? "Gift Receipt" : "Receipt"}</h1>
+                                  <h1 style="margin: 0; font-size: 24px; line-height: normal; font-weight: bold;">${req.body.gift_receipt == true? "Gift Receipt" : "Receipt"}</h1>
                                 </div>
                               </td>
                             </tr>
@@ -591,7 +591,7 @@ const TOKEN_STORAGE="/tmp/";
                                           <div style="font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;line-height:22px;text-align:left;color:#434245;">
                                             <h3 style="margin: 0; font-weight: bold;">Items Ordered</h3>
                                             <p style="margin: 0;"><small>Date: ${currentdate.toLocaleString()}</small></p>
-                                            <p style="margin: 0;"><small>Invoice Number: ${req.body.order.invoice}</small></p>
+                                            <p style="margin: 0;"><small>Invoice Number: ${req.body.invoice}</small></p>
                                           </div>
                                         </td>
                                       </tr>
@@ -633,9 +633,9 @@ const TOKEN_STORAGE="/tmp/";
                                         <tbody><tr>
                                           <td style="font-size:0px;padding:10px 25px;word-break:break-word;" align="right">
                                             <div style="font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:right;color:#434245;">
-                                              <p style="margin: 0;"><small>${req.body.order.currencyPaid} ${req.body.order.discount}</small></p>
-                                              <p style="margin: 0;"><small>${req.body.order.currencyPaid} ${req.body.order.shipping}</small></p>
-                                              <p style="margin: 0;"><small>${req.body.order.currencyPaid} ${req.body.order.tax}</small></p>
+                                              <p style="margin: 0;"><small>${req.body.currencyPaid} ${req.body.discount}</small></p>
+                                              <p style="margin: 0;"><small>${req.body.currencyPaid} ${req.body.shipping}</small></p>
+                                              <p style="margin: 0;"><small>${req.body.currencyPaid} ${req.body.tax}</small></p>
                                             </div>
                                           </td>
                                         </tr>
@@ -675,7 +675,7 @@ const TOKEN_STORAGE="/tmp/";
                                         <tbody><tr>
                                           <td style="font-size:0px;padding:10px 25px;word-break:break-word;" align="right">
                                             <div style="font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:right;color:#434245;">
-                                              <p style="margin: 0;">${req.body.order.currencyPaid} ${req.body.order.amountCharged}</p>
+                                              <p style="margin: 0;">${req.body.currencyPaid} ${req.body.amountCharged}</p>
                                             </div>
                                           </td>
                                         </tr>
@@ -829,18 +829,12 @@ const TOKEN_STORAGE="/tmp/";
 
           </body></html>`;
 
-      var textMsg = ` Hi, Your receipt. 
-                  when: ${currentdate.toLocaleString()}.
-                  Guest Name: ${req.body.firstname + " " + req.body.lastname}.
-                  Contact: ${req.body.phone + " " + req.body.email}.
-                  Purpose: ${req.body.subject}.
-                  Comment: ${req.body.comment}.
-                `;
+      var textMsg = "Receipt - Lisafolawiyo";
 
       var email = {
         "html" : htmlMsg,
         "text" : textMsg,
-        "subject" : req.body.order.gift_receipt == true? "Gift Receipt" : "Receipt",
+        "subject" : req.body.gift_receipt == true? "Gift Receipt" : "Receipt",
         "from" : {
           "name" : "Lisafolawiyo",
           "email" : "info@lisafolawiyo.com"
@@ -1046,7 +1040,7 @@ const TOKEN_STORAGE="/tmp/";
                             <tr>
                               <td style="font-size:0px;padding:10px 25px;word-break:break-word;" align="left">
                                 <div style="font-family:Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:24px;text-align:left;color:#434245;">
-                                  <p style="margin: 0;"><strong style="font-size: 14px; color: #999; line-height: 18px">Amount Paid:</strong><br /> ${req.body.order.currencyPaid} ${req.body.order.amountCharged}</p>
+                                  <p style="margin: 0;"><strong style="font-size: 14px; color: #999; line-height: 18px">Amount Paid:</strong><br /> ${req.body.currencyPaid} ${req.body.amountCharged}</p>
                                 </div>
                               </td>
                             </tr>
@@ -1107,13 +1101,7 @@ const TOKEN_STORAGE="/tmp/";
           
           </body></html>`;
     
-          var textMsg = ` Hello, you have an order. 
-                      when: ${currentdate.toLocaleString()}.
-                      Guest Name: ${req.body.firstname + " " + req.body.lastname}.
-                      Contact: ${req.body.phone + " " + req.body.email}.
-                      Purpose: ${req.body.subject}.
-                      Comment: ${req.body.comment}.
-                    `;
+          var textMsg = "Hello, you have an order";
     
           var email = {
             "html" : htmlMsg,
