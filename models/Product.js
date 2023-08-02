@@ -7,6 +7,22 @@ const ProductSchema = new mongoose.Schema(
     img: { type: Array, required: true },
     categories: { type: Array, required: true },
     size: { type: Array, required: true},
+    colors: [
+      {
+        id: {
+          type: String,
+          required: false,
+        },
+        name: {
+          type: String,
+          required: false,
+        },
+        code: {
+          type: String,
+          required: false,
+        },
+      },
+    ],
     prices: {
       USD: {
         type: Number,

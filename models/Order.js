@@ -2,9 +2,17 @@ const mongoose = require("mongoose");
 
 const OrderSchema = new mongoose.Schema(
   {
-    customerId: { type: String, required: true },
     reference: { type: String, required: true },
     invoice: { type: Number},
+    customer: {
+      fullName: { type: String, required: true},
+      email: { type: String, required: true },
+      phone: { type: String, required: true },
+      country: { type: String, required: true },
+      city: { type: String, required: true },
+      address: { type: String, required: true },
+      postcode: { type: String},
+    },
     products: [
       {
         productId: {
