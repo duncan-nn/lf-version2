@@ -49,7 +49,7 @@ router.get("/paystack_verify/:ref", async (req, res) => {
   let output;
   await axios.get(`https://api.paystack.co/transaction/verify/${req.params.ref}`, {
     headers: {
-      Authorization: "Bearer sk_test_98fd0d2511a4df0db37f70db980e15a6df51da6a",
+      Authorization: "Bearer sk_live_9e932143bd61e696bae5e4421730069bca3557db",
       //replace TEST SECRET KEY with your actual test secret 
       //key from paystack
       "content-type": "application/json",
